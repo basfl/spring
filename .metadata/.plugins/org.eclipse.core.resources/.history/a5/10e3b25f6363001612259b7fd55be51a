@@ -1,0 +1,25 @@
+package com;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication
+public class ObjeConstrcutApplication {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext ctx = SpringApplication.run(ObjeConstrcutApplication.class, args);
+		Mesg m = ctx.getBean(Mesg.class);
+		m.setMsg("whats up");
+		
+	}
+	@Bean
+	public A getA(){
+		return new A(mesg());
+	}
+	@Bean
+	public Mesg mesg(){
+		return new Mesg();
+	}
+}

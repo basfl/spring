@@ -1,0 +1,66 @@
+package com;
+
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class MyUserDetails  implements UserDetails {
+//	@Autowired
+//	Auth auth;
+	String pass;
+	String user;
+//	public  MyUserDetails(Auth auth) {
+//		this.auth=auth;
+//	}
+	public  MyUserDetails(String pass,String user) {
+		this.pass=pass;
+		this.user=user;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+	//	return auth.getPass();
+		return this.pass;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+	//	return auth.getUser();
+		return this.user;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

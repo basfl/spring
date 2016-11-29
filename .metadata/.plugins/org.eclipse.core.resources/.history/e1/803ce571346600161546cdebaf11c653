@@ -1,0 +1,22 @@
+package com;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ws.client.core.WebServiceTemplate;
+
+import gen.GetCountryRequest;
+
+public class A {
+	@Autowired
+	WebServiceTemplate webservice;
+	public A(){
+		System.out.println("wtf");
+	//	webservice.setDefaultUri("http://localhost:8080/ws/countries.wsdl");
+	//	System.out.println("msg is "+msg.getMsg());
+	//	webservice.marshalSendAndReceive("http://localhost:8080/ws/countries.wsdl", "spain");
+		GetCountryRequest getCountryRequest=new GetCountryRequest();
+		getCountryRequest.setName("spain");
+		Class<?> clazz;
+		
+	}
+
+}

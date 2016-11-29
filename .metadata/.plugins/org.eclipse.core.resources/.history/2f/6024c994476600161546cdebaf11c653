@@ -1,0 +1,43 @@
+package com;
+
+import java.io.StringReader;
+
+import javax.xml.bind.JAXBException;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ws.client.core.WebServiceTemplate;
+
+import gen.GetCountryRequest;
+import gen.GetCountryResponse;
+
+public class A {
+	@Autowired
+	WebServiceTemplate webservice;
+	public A() throws InstantiationException, IllegalAccessException, JAXBException{
+		System.out.println("wtf");
+		
+	//	webservice.setDefaultUri("http://wsf.cdyne.com/WeatherWS/Weather.asmx");
+	//	System.out.println("msg is "+msg.getMsg());
+	//	  webservice.marshalSendAndReceive("http://localhost:8080/ws/countries.wsdl", "spain");
+		GetCountryRequest getCountryRequest=new GetCountryRequest();
+		getCountryRequest.setName("spain");
+		System.out.println( XMLObj.getXML(getCountryRequest));
+		GetCountryResponse getCountryResponse=new  GetCountryResponse();
+	//	webservice.marshalSendAndReceive("http://localhost:8080/ws/countries.wsdl",  XMLObj.getXML(getCountryRequest));
+//		webservice.sendSourceAndReceive(getCountryRequest, getCountryResponse);
+//		webservice.se
+		StreamSource source = new StreamSource(new StringReader( XMLObj.getXML(getCountryRequest)));
+        StreamResult result = new StreamResult(System.out);
+        webservice.sendSourceAndReceiveToResult("http://localhost:8080/ws/countries.wsdl",
+            source, result);
+		
+//		Class<?> clazz = null;
+//		Object search=clazz.newInstance();
+//		clazz.getMethod(name, parameterTypes)
+		
+		
+	}
+
+}

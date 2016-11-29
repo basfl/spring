@@ -1,0 +1,14 @@
+package com;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ws.client.core.WebServiceTemplate;
+
+public class A {
+	@Autowired
+	WebServiceTemplate webservice;
+	public A(Mesg msg){
+		System.out.println("msg is "+msg.getMsg());
+		webservice.marshalSendAndReceive("http://localhost:8080/ws/countries.wsdl", "iran");
+	}
+
+}

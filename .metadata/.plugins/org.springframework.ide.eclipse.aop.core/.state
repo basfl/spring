@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="SpringSecurityRest"/>
+<aop-project name="MongoDbApp"/>
+<aop-project name="ObjeConstrcut"/>
+<aop-project name="JPA_Proj"/>
+<aop-project name="MVC_Config"/>
+<aop-project name="gs-rest-service"/>
+<aop-project name="MongoDBBoot"/>
+<aop-project name="AuthorizationServer"/>
+<aop-project name="WebService"/>
+<aop-project name="SocialApplication"/>
+</aop-reference-model>

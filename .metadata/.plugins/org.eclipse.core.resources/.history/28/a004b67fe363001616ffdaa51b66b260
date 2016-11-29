@@ -1,0 +1,3 @@
+server.port=9999
+security.user.password=acmesecret
+server.contextPath=/uaa

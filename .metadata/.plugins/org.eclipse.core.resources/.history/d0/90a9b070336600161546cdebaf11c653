@@ -1,0 +1,42 @@
+package com;
+
+import org.apache.log4j.Logger;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.oxm.Marshaller;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.ws.client.core.WebServiceTemplate;
+
+@SpringBootApplication
+public class ObjeConstrcutApplication {
+	private static Logger log = Logger.getLogger(ObjeConstrcutApplication.class);
+
+	public static void main(String[] args) {
+		 log.info("Logger enabled: Entering main \n\n");
+	SpringApplication.run(ObjeConstrcutApplication.class, args);
+		
+		
+	}
+	@Bean
+	public A getA(){
+		return new A(mesg());
+	}
+	@Bean
+	public Mesg mesg(){
+		return new Mesg();
+	}
+@Bean
+public WebServiceTemplate webServiceTemplate(Marshaller marshaller){
+	WebServiceTemplate webServiceTemplate=new WebServiceTemplate(marshaller);
+	return webServiceTemplate;
+}
+@Bean
+public Jaxb2Marshaller marshaller(){
+	Jaxb2Marshaller marshaller=new Jaxb2Marshaller();
+	marshaller.setPackagesToScan(getClass().getPackage().getName());
+	return marshaller;
+	
+}
+}

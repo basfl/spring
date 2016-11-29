@@ -1,0 +1,8 @@
+package com;
+
+public class A {
+	public A(String msg){
+		System.out.println("msg is "+msg);
+	}
+
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+Received response [
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Header />
+	<SOAP-ENV:Body>
+		<ns2:getCountryResponse
+			xmlns:ns2="http://spring.io/guides/gs-producing-web-service" />
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+] for request [
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Header />
+	<SOAP-ENV:Body>
+		<ns2:getCountryRequest
+			xmlns:ns2="http://spring.io/guides/gs-producing-web-service">
+			<ns2:name>spain</ns2:name>
+		</ns2:getCountryRequest>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+]
+Sent request [
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Header />
+	<SOAP-ENV:Body>
+		<ns2:getCountryRequest
+			xmlns:ns2="http://spring.io/guides/gs-producing-web-service">
+			<ns2:name>spain</ns2:name>
+		</ns2:getCountryRequest>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+]
+

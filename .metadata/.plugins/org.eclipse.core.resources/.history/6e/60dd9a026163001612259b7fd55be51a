@@ -1,0 +1,70 @@
+package com;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
+import org.hibernate.secure.spi.GrantedPermission;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.GenericTypeAwareAutowireCandidateResolver;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CustomUserDetailsService implements UserDetailsService {
+	@Autowired
+	AuthDao authDao;
+	@Autowired
+    private UserService1 userService1;
+	
+
+	@Override
+	public UserDetails loadUserByUsername(String us) throws UsernameNotFoundException {
+		System.out.println("***************************************"+us);
+		Auth user = authDao.findByUser(us);
+		System.out.println("#############################"+user.getPass());
+		MyUserDetails myUserDetails = new MyUserDetails(user.getPass(),user.getUser());
+	//	MyUserDetails myUserDetails = new MyUserDetails("secret1","user1");
+		// UserDetails usr=new User("", "", true, true, true, true, new GrantedAuthority[]{ new GrantedAuthorityImpl("ROLE_USER") });
+	//	UserDetails ur=new User("", "", true, true, true, true, (Collection<? extends GrantedAuthority>) new GrantedPermission("", "", ""));
+	//	userDetails = new MyUserDetails(pass, user)
+		 Map<String, Object> userMap = userService1.getUserByUsername(us);
+		 String username = (String) userMap.get("user1");
+	        String password = (String) userMap.get("secret1");
+	        String role = (String) userMap.get("USER");
+	 
+	        List<SimpleGrantedAuthority> authList = getAuthorities(role);
+	        User ur = new User(username, password, authList);
+	        
+	        return ur;
+	 
+		
+		
+
+
+	}
+
+
+	 private List<SimpleGrantedAuthority> getAuthorities(String role) {
+	        List<SimpleGrantedAuthority> authList = new ArrayList<>();
+	        authList.add(new SimpleGrantedAuthority("ROLE_USER"));
+	 
+	        //you can also add different roles here
+	        //for example, the user is also an admin of the site, then you can add ROLE_ADMIN
+	        //so that he can view pages that are ROLE_ADMIN specific
+	        if (role != null && role.trim().length() > 0) {
+	            if (role.equals("admin")) {
+	                authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+	            }
+	        }
+	 
+	        return authList;
+	    }
+
+}
